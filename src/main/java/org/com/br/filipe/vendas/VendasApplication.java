@@ -17,13 +17,11 @@ public class VendasApplication {
 //    public CommandLineRunner init(@Autowired ClienteRepository clienteRepository, @Autowired PedidoRepository pedidoRepository) {
 //        return args -> {
 //
-//            clienteRepository.save(new Cliente("Filipe"));
-//            clienteRepository.save(new Cliente("Rafaela"));
+//            clienteRepository.save(new Cliente("Cliente 1"));
+//            clienteRepository.save(new Cliente("Cliente 2"));
 //
-//            Cliente maria = new Cliente("Maria");
+//            Cliente maria = new Cliente("Cliente 3");
 //            clienteRepository.save(maria);
-//
-//
 //        };
 //    }
 }
