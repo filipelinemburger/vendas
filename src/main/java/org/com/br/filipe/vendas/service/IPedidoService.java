@@ -1,5 +1,6 @@
 package org.com.br.filipe.vendas.service;
 
+import org.com.br.filipe.vendas.domain.enums.StatusPedido;
 import org.com.br.filipe.vendas.rest.dto.PedidoDTO;
 import org.com.br.filipe.vendas.domain.Pedido;
 import org.springframework.data.domain.Example;
@@ -16,5 +17,7 @@ public interface IPedidoService {
 
     Pedido salvar(PedidoDTO pedidoDTO);
 
-    public List<Pedido> findAllWithExampleSearch(Example example);
+    List<Pedido> findAllWithExampleSearch(Example example);
+    Optional<Pedido> obterPedidoCompleto(Integer id);
+    void atualizaStatus(Integer id, StatusPedido statusPedido);
 }

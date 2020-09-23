@@ -6,17 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PedidoDTO {
-
-    private Integer clienteId;
-    private BigDecimal total;
-    private List<ItemPedidoDTO> listaItens;
-
-
+public class InformacaoItemPedidoDTO {
+    private String descricaoProduto;
+    private BigDecimal precoUnitario;
+    private Integer quantidade;
 }

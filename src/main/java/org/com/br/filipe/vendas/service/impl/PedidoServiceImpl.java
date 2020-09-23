@@ -1,5 +1,7 @@
 package org.com.br.filipe.vendas.service.impl;
 
+import org.com.br.filipe.vendas.domain.enums.StatusPedido;
+import org.com.br.filipe.vendas.exception.PedidoNaoEncontradoException;
 import org.com.br.filipe.vendas.rest.dto.ItemPedidoDTO;
 import org.com.br.filipe.vendas.rest.dto.PedidoDTO;
 import org.com.br.filipe.vendas.domain.Cliente;
@@ -21,6 +23,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.com.br.filipe.vendas.domain.enums.StatusPedido.REALIZADO;
 
 @Service
 public class PedidoServiceImpl implements IPedidoService {
@@ -45,6 +49,7 @@ public class PedidoServiceImpl implements IPedidoService {
         pedido.setTotal(pedidoDTO.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(REALIZADO);
         List<ItemPedidoDTO> itensPedidoDTO = pedidoDTO.getListaItens();
         List<ItemPedido> itemPedidoList = mapItensPedido(pedido, itensPedidoDTO);
         iPedidoRepository.save(pedido);
@@ -87,5 +92,21 @@ public class PedidoServiceImpl implements IPedidoService {
 
     public List<Pedido> findAllWithExampleSearch(Example example) {
         return iPedidoRepository.findAll(example);
+    }
+
+    @Override
+    public Optional<Pedido> obterPedidoCompleto(Integer id) {
+        return iPedidoRepository.findByIdFetchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus( Integer id, StatusPedido statusPedido ) {
+        iPedidoRepository
+                .findById(id)
+                .map( pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return iPedidoRepository.save(pedido);
+                }).orElseThrow(() -> new PedidoNaoEncontradoException() );
     }
 }
