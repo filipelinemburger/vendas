@@ -5,8 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
 import java.util.Set;
+
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
 
