@@ -92,5 +92,10 @@
         </plugins>
     </build>
 
+    <properties>
+         <sonar.projectKey>filipelinemburger_vendas</sonar.projectKey>
+         <sonar.organization>filipelinemburger</sonar.organization>
+         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 
 </project>
